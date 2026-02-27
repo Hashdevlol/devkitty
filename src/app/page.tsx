@@ -91,21 +91,60 @@ export default function Home() {
             </p>
           </div>
           
-          <Card className="max-w-4xl mx-auto">
-            <CardHeader>
-              <CardTitle className="text-center">Loading top developers...</CardTitle>
-              <CardDescription className="text-center">
-                Connect to see real-time leaderboard data
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-center">
-              <Button asChild className="gradient-primary text-white">
-                <Link href="/leaderboard">
-                  View Full Leaderboard
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+            <Card className="gradient-card border-amber-500/20">
+              <CardHeader className="text-center">
+                <div className="text-4xl mb-2">🥇</div>
+                <CardTitle className="text-amber-500">Top Earner</CardTitle>
+                <CardDescription>
+                  9WzD...AWWM
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-2xl font-bold text-amber-500 mb-1">$2.8M</div>
+                <div className="text-sm text-muted-foreground">Total Profit</div>
+                <div className="text-xs text-muted-foreground mt-2">87.5% Success Rate</div>
+              </CardContent>
+            </Card>
+            
+            <Card className="gradient-card border-gray-400/20">
+              <CardHeader className="text-center">
+                <div className="text-4xl mb-2">🥈</div>
+                <CardTitle className="text-gray-400">Runner Up</CardTitle>
+                <CardDescription>
+                  HN7c...YWrH
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-2xl font-bold text-gray-400 mb-1">$1.9M</div>
+                <div className="text-sm text-muted-foreground">Total Profit</div>
+                <div className="text-xs text-muted-foreground mt-2">72.2% Success Rate</div>
+              </CardContent>
+            </Card>
+            
+            <Card className="gradient-card border-orange-400/20">
+              <CardHeader className="text-center">
+                <div className="text-4xl mb-2">🥉</div>
+                <CardTitle className="text-orange-400">Third Place</CardTitle>
+                <CardDescription>
+                  4k3D...kX6R
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="text-2xl font-bold text-orange-400 mb-1">$1.5M</div>
+                <div className="text-sm text-muted-foreground">Total Profit</div>
+                <div className="text-xs text-muted-foreground mt-2">58.1% Success Rate</div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <Button asChild size="lg" className="gradient-primary text-white">
+              <Link href="/leaderboard">
+                View Full Leaderboard <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

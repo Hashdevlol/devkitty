@@ -70,11 +70,27 @@ export default function Leaderboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setDevelopers(mockDevelopers);
-      setLoading(false);
-    }, 1500);
+    async function fetchDevelopers() {
+      try {
+        const response = await fetch('/api/developers');
+        const data = await response.json();
+        
+        if (data.success) {
+          setDevelopers(data.data);
+        } else {
+          // Fallback to mock data if API fails
+          setDevelopers(mockDevelopers);
+        }
+      } catch (error) {
+        console.error('Error fetching developers:', error);
+        // Fallback to mock data
+        setDevelopers(mockDevelopers);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchDevelopers();
   }, []);
 
   if (loading) {
