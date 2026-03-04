@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "DevKitty - PumpFun Dev Wallet Analyzer",
-  description: "Track top PumpFun developer wallets by profit. Analyze launches, success rates, and creator fees with our cat-themed analytics platform.",
+  title: "DevKitty - Track Top PumpFun Developers",
+  description: "Real-time analytics on the most profitable PumpFun developers. See who's winning, what they're launching, and how much they're making.",
   keywords: ["PumpFun", "Solana", "DEV", "Analytics", "Crypto", "Wallet", "Trading"],
   authors: [{ name: "DevKitty" }],
-  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -23,16 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased min-h-screen bg-background text-foreground`}>
-        <div className="relative flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <footer className="border-t py-6">
-            <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-              <p>© 2026 DevKitty. Built with 💜 for the PumpFun community.</p>
-            </div>
-          </footer>
-        </div>
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        {children}
       </body>
     </html>
   );
