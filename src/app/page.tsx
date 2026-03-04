@@ -131,52 +131,52 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Floating Cat + Stats */}
+            {/* Right Column - Stats Grid */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative"
             >
-              <div className="relative">
-                {/* Floating cat */}
+              {/* Floating cat */}
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="text-center mb-12"
+              >
+                <span className="text-[140px] lg:text-[180px] leading-none block drop-shadow-2xl">🐱</span>
+              </motion.div>
+              
+              {/* Stats row below cat */}
+              <div className="grid grid-cols-3 gap-4">
                 <motion.div
-                  animate={{ y: [0, -20, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="text-center mb-8"
-                >
-                  <span className="text-[180px] leading-none block">🐱</span>
-                </motion.div>
-                
-                {/* Stats cards floating around */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="absolute top-8 -left-8 card-dark p-4"
+                  className="card-dark p-5 text-center"
                 >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Top Earner</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Top Earner</div>
                   <div className="text-2xl font-bold">$2.8M</div>
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 }}
-                  className="absolute top-24 -right-4 card-dark p-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.75 }}
+                  className="card-dark p-5 text-center"
                 >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Success Rate</div>
-                  <div className="text-2xl font-bold text-green-400">87.5%</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Devs Tracked</div>
+                  <div className="text-2xl font-bold">1,247</div>
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1 }}
-                  className="absolute bottom-16 left-1/2 -translate-x-1/2 card-dark p-4"
+                  transition={{ delay: 0.9 }}
+                  className="card-dark p-5 text-center"
                 >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Devs Tracked</div>
-                  <div className="text-2xl font-bold">1,247</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Success Rate</div>
+                  <div className="text-2xl font-bold text-green-400">87.5%</div>
                 </motion.div>
               </div>
             </motion.div>
