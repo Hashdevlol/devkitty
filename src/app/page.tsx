@@ -34,17 +34,6 @@ const AnimatedCounter = ({ value, prefix = "", suffix = "" }: { value: number; p
   return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
 };
 
-// Stagger container
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
@@ -66,22 +55,16 @@ export default function Home() {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto px-8 py-5 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3">
-            <motion.span 
-              className="text-3xl"
-              animate={{ rotate: [0, -10, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              🐱
-            </motion.span>
+            <span className="text-2xl">🐱</span>
             <span className="text-xl font-bold tracking-tight">DevKitty</span>
           </Link>
           <div className="flex items-center gap-8">
-            <Link href="/leaderboard" className="text-sm text-gray-400 hover:text-white transition-colors uppercase tracking-wider">
+            <Link href="/leaderboard" className="text-sm text-gray-400 hover:text-white transition-colors">
               Leaderboard
             </Link>
-            <Link href="/leaderboard" className="btn-primary text-sm">
+            <Link href="/leaderboard" className="btn-primary text-sm px-6 py-3">
               Explore Devs →
             </Link>
           </div>
@@ -89,188 +72,122 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-24">
-        <div className="max-w-7xl mx-auto px-6 py-32">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Column */}
+      <section className="min-h-screen flex items-center pt-20">
+        <div className="max-w-6xl mx-auto px-8 py-24">
+          <div className="max-w-3xl">
             <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate="show"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
             >
-              <motion.div variants={fadeInUp} className="mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-xs text-gray-400 uppercase tracking-widest">
-                  <span className="live-dot" />
-                  Live PumpFun Analytics
-                </span>
-              </motion.div>
-              
-              <motion.h1 
-                variants={fadeInUp}
-                className="text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.95] mb-8"
-              >
-                Track the
-                <br />
-                <span className="text-gray-500">top earners.</span>
-              </motion.h1>
-              
-              <motion.p 
-                variants={fadeInUp}
-                className="text-lg text-gray-400 max-w-md mb-10 leading-relaxed"
-              >
-                Real-time analytics on the most profitable PumpFun developers. See who&apos;s winning, what they&apos;re launching, and how much they&apos;re making.
-              </motion.p>
-              
-              <motion.div variants={fadeInUp} className="flex gap-4">
-                <Link href="/leaderboard" className="btn-primary">
-                  View Leaderboard
-                </Link>
-                <button className="btn-secondary">
-                  Learn More
-                </button>
-              </motion.div>
+              <span className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-xs text-gray-400 uppercase tracking-widest">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                Live Analytics
+              </span>
             </motion.div>
-
-            {/* Right Column - Stats Grid */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
+            
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1] mb-8"
             >
-              {/* Floating cat */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="text-center mb-12"
-              >
-                <span className="text-[140px] lg:text-[180px] leading-none block drop-shadow-2xl">🐱</span>
-              </motion.div>
-              
-              {/* Stats row below cat */}
-              <div className="grid grid-cols-3 gap-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="card-dark p-5 text-center"
-                >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Top Earner</div>
-                  <div className="text-2xl font-bold">$2.8M</div>
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.75 }}
-                  className="card-dark p-5 text-center"
-                >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Devs Tracked</div>
-                  <div className="text-2xl font-bold">1,247</div>
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 }}
-                  className="card-dark p-5 text-center"
-                >
-                  <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Success Rate</div>
-                  <div className="text-2xl font-bold text-green-400">87.5%</div>
-                </motion.div>
-              </div>
+              Track the top
+              <br />
+              <span className="text-gray-500">PumpFun earners.</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-xl text-gray-400 max-w-xl mb-12 leading-relaxed"
+            >
+              Real-time analytics on the most profitable developers. See who&apos;s winning, what they&apos;re launching, and how much they&apos;re making.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex gap-4"
+            >
+              <Link href="/leaderboard" className="btn-primary text-base px-8 py-4">
+                View Leaderboard →
+              </Link>
+              <a href="https://github.com/hashdevlol/devkitty" className="btn-secondary text-base px-8 py-4">
+                GitHub
+              </a>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="border-y border-white/5 bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            <div className="text-center">
-              <div className="stat-value"><AnimatedCounter value={2847} prefix="$" suffix="K" /></div>
-              <div className="stat-label mt-2">Total Volume Tracked</div>
-            </div>
-            <div className="text-center">
-              <div className="stat-value"><AnimatedCounter value={1247} /></div>
-              <div className="stat-label mt-2">Developers Indexed</div>
-            </div>
-            <div className="text-center">
-              <div className="stat-value"><AnimatedCounter value={8934} /></div>
-              <div className="stat-label mt-2">Tokens Analyzed</div>
-            </div>
-            <div className="text-center">
-              <div className="stat-value"><AnimatedCounter value={67} suffix="%" /></div>
-              <div className="stat-label mt-2">Avg Success Rate</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <div className="section-label mb-6">Why DevKitty</div>
-            <h2 className="section-title max-w-2xl">
-              Know who&apos;s making money before you ape.
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-px bg-white/5">
+      {/* Stats */}
+      <section className="border-y border-white/5 bg-[#050505]">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="grid grid-cols-4 divide-x divide-white/5">
             {[
-              {
-                num: "01",
-                title: "Profit Tracking",
-                desc: "Real-time P&L for every developer. See total profits from launches, trading fees, and creator rewards."
-              },
-              {
-                num: "02", 
-                title: "Success Rates",
-                desc: "Historical win rates and launch patterns. Know who consistently delivers vs. one-hit wonders."
-              },
-              {
-                num: "03",
-                title: "Launch Analytics",
-                desc: "Deep dive into individual tokens. Entry/exit points, peak MC, holder distribution, and more."
-              },
-              {
-                num: "04",
-                title: "Creator Fees",
-                desc: "Track revenue from initial buys, sells, and trading fees. Understand the full revenue picture."
-              },
-              {
-                num: "05",
-                title: "Wallet Analysis",
-                desc: "See connected wallets, funding patterns, and on-chain behavior. Spot coordinated activity."
-              },
-              {
-                num: "06",
-                title: "Real-time Data",
-                desc: "Powered by Helius API. Sub-second updates on new launches, trades, and position changes."
-              }
-            ].map((feature, i) => (
+              { value: 2.8, prefix: "$", suffix: "M+", label: "Volume Tracked" },
+              { value: 1247, prefix: "", suffix: "", label: "Devs Indexed" },
+              { value: 8934, prefix: "", suffix: "", label: "Tokens Analyzed" },
+              { value: 67, prefix: "", suffix: "%", label: "Avg Win Rate" },
+            ].map((stat, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-black p-10 hover:bg-[#0a0a0a] transition-colors group"
+                className="py-16 text-center"
               >
-                <div className="text-xs text-gray-600 mono mb-6">{feature.num}</div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-white transition-colors">{feature.title}</h3>
+                <div className="text-4xl font-bold tracking-tight mb-2">
+                  {stat.prefix}{typeof stat.value === 'number' && stat.value < 100 ? stat.value : <AnimatedCounter value={stat.value} />}{stat.suffix}
+                </div>
+                <div className="text-sm text-gray-500 uppercase tracking-wider">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-32">
+        <div className="max-w-6xl mx-auto px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl font-bold tracking-tight mb-4">
+              Everything you need to research devs.
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Stop aping blind. Know exactly who you&apos;re following.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: "📊", title: "Profit Tracking", desc: "Real-time P&L for every developer across all their launches." },
+              { icon: "📈", title: "Success Rates", desc: "Historical win rates and patterns. Spot consistent winners." },
+              { icon: "🔍", title: "Launch Analytics", desc: "Deep dive into tokens — entry points, peak MC, holders." },
+              { icon: "💰", title: "Creator Fees", desc: "Track revenue from initial buys, sells, and trading fees." },
+              { icon: "👛", title: "Wallet Analysis", desc: "Connected wallets, funding patterns, coordinated activity." },
+              { icon: "⚡", title: "Real-time Data", desc: "Sub-second updates powered by Helius API." },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="bg-[#0a0a0a] border border-white/5 p-8 hover:border-white/10 transition-colors"
+              >
+                <span className="text-3xl mb-4 block">{feature.icon}</span>
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
@@ -278,9 +195,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Top Performers Preview */}
-      <section className="py-32 bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Top Performers */}
+      <section className="py-32 bg-[#050505]">
+        <div className="max-w-6xl mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -288,15 +205,25 @@ export default function Home() {
             className="flex justify-between items-end mb-12"
           >
             <div>
-              <div className="section-label mb-6">Leaderboard</div>
-              <h2 className="section-title">Top Performers</h2>
+              <h2 className="text-4xl font-bold tracking-tight mb-2">Top Performers</h2>
+              <p className="text-gray-500">The most profitable PumpFun developers.</p>
             </div>
-            <Link href="/leaderboard" className="btn-secondary text-sm">
+            <Link href="/leaderboard" className="btn-secondary text-sm px-6 py-3">
               View All →
             </Link>
           </motion.div>
 
-          <div className="space-y-px">
+          <div className="bg-[#0a0a0a] border border-white/5">
+            {/* Table Header */}
+            <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/5 text-xs text-gray-500 uppercase tracking-wider">
+              <div className="col-span-1">#</div>
+              <div className="col-span-4">Developer</div>
+              <div className="col-span-2 text-right">Profit</div>
+              <div className="col-span-2 text-right">Win Rate</div>
+              <div className="col-span-3 text-right">Launches</div>
+            </div>
+            
+            {/* Table Rows */}
             {[
               { rank: 1, wallet: "9WzD...AWWM", profit: "$2.8M", rate: "87.5%", launches: 127 },
               { rank: 2, wallet: "HN7c...YWrH", profit: "$1.9M", rate: "72.2%", launches: 89 },
@@ -306,56 +233,35 @@ export default function Home() {
             ].map((dev, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="table-row bg-black hover:bg-[#111] transition-colors"
+                transition={{ delay: i * 0.05 }}
+                className="grid grid-cols-12 gap-4 px-6 py-5 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
               >
-                <div className="flex items-center justify-between p-6">
-                  <div className="flex items-center gap-8">
-                    <span className="text-2xl font-bold text-gray-600 w-8">
-                      {dev.rank === 1 ? "🥇" : dev.rank === 2 ? "🥈" : dev.rank === 3 ? "🥉" : `#${dev.rank}`}
-                    </span>
-                    <span className="mono text-lg">{dev.wallet}</span>
-                  </div>
-                  <div className="flex items-center gap-12">
-                    <div className="text-right">
-                      <div className="text-xs text-gray-500 uppercase tracking-wider">Profit</div>
-                      <div className="text-lg font-bold text-green-400">{dev.profit}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-gray-500 uppercase tracking-wider">Success</div>
-                      <div className="text-lg font-semibold">{dev.rate}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-xs text-gray-500 uppercase tracking-wider">Launches</div>
-                      <div className="text-lg font-semibold text-gray-400">{dev.launches}</div>
-                    </div>
-                  </div>
+                <div className="col-span-1 text-gray-500 font-medium">
+                  {dev.rank === 1 ? "🥇" : dev.rank === 2 ? "🥈" : dev.rank === 3 ? "🥉" : dev.rank}
                 </div>
+                <div className="col-span-4 font-mono text-sm">{dev.wallet}</div>
+                <div className="col-span-2 text-right font-semibold text-green-400">{dev.profit}</div>
+                <div className="col-span-2 text-right">{dev.rate}</div>
+                <div className="col-span-3 text-right text-gray-400">{dev.launches}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="py-40">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-3xl mx-auto px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <motion.span 
-              className="text-8xl block mb-8"
-              animate={{ rotate: [0, -5, 5, -5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 2 }}
-            >
-              🐱
-            </motion.span>
-            <h2 className="text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+            <span className="text-7xl block mb-8">🐱</span>
+            <h2 className="text-5xl font-bold tracking-tight mb-6">
               Stop aping blind.
             </h2>
             <p className="text-xl text-gray-400 mb-10">
@@ -369,26 +275,18 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-12">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">🐱</span>
-            <span className="font-bold">DevKitty</span>
+      <footer className="border-t border-white/5 py-8">
+        <div className="max-w-6xl mx-auto px-8 flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🐱</span>
+            <span className="font-semibold">DevKitty</span>
           </div>
-          <div className="flex items-center gap-8">
-            <Link href="/leaderboard" className="text-sm text-gray-500 hover:text-white transition-colors">
-              Leaderboard
-            </Link>
-            <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-              Twitter
-            </a>
-            <a href="https://github.com/hashdevlol/devkitty" className="text-sm text-gray-500 hover:text-white transition-colors">
-              GitHub
-            </a>
+          <div className="flex items-center gap-6 text-sm text-gray-500">
+            <Link href="/leaderboard" className="hover:text-white transition-colors">Leaderboard</Link>
+            <a href="#" className="hover:text-white transition-colors">Twitter</a>
+            <a href="https://github.com/hashdevlol/devkitty" className="hover:text-white transition-colors">GitHub</a>
           </div>
-          <div className="text-sm text-gray-600">
-            © 2026 DevKitty
-          </div>
+          <div className="text-sm text-gray-600">© 2026 DevKitty</div>
         </div>
       </footer>
     </div>
